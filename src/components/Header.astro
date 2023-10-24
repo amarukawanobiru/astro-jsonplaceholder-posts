@@ -1,0 +1,45 @@
+---
+import Navigation from "./Navigation.astro";
+import { Image } from "astro:assets";
+import localHeaderLogo from "../assets/logo.svg";
+---
+
+<header class="header">
+  <div class="header__inner inner">
+    <a class="header__logo" href="/">
+      <Image class="header__logo__image" src={ localHeaderLogo } alt="JSONPlaceholder Posts" />
+    </a>
+    <Navigation />
+  </div>
+</header>
+
+<style lang="scss">
+  @use "../styles/colors" as *;
+
+  .header {
+    border-bottom: 1px solid $color-text;
+    
+    &__inner {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 100%;
+        border-top: 1px solid $color-text;
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+      }
+    }
+
+    &__logo {
+      display: block;
+      width: 240px;
+    }
+  }
+</style>

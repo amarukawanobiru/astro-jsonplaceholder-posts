@@ -2,7 +2,9 @@
 ---
 
 <footer class="footer">
-  <small class="copy">&copy; 2023 Astro JSONPlaceholder Posts by Nobiru Amarukawa</small>
+  <div class="footer__inner">
+    <small class="copy">&copy; 2023 Astro JSONPlaceholder Posts by Nobiru Amarukawa</small>
+  </div>
 </footer>
 
 <style lang="scss">
@@ -11,15 +13,27 @@
   .footer {
     margin-top: 40px;
     border-top: 1px solid $color-text;
-    position: relative;
+    
+    &__inner {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      position: relative;
 
-    &::after {
-      content: "";
-      width: 100%;
-      border-top: 1px solid $color-text;
-      position: absolute;
-      top: 2px;
-      left: 0;
+      &::after {
+        content: "";
+        width: 100%;
+        border-top: 1px solid $color-text;
+        position: absolute;
+        top: 2px;
+        left: 0;
+      }
     }
+
+  }
+
+  .copy {
+    display: block;
+    font-size: .75rem;
+    text-align: center;
   }
 </style>

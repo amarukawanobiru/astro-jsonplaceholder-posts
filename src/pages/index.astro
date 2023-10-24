@@ -1,5 +1,7 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Mainvisual from "../components/Mainvisual.astro";
+import AllPosts from "../components/AllPosts.astro";
 
 const pageStatus = {
   title: "Home",
@@ -8,4 +10,6 @@ const pageStatus = {
 ---
 
 <PageLayout title={ pageStatus.title } description={ pageStatus.description }>
+  <Mainvisual />
+  <AllPosts isHomePage={ true } />
 </PageLayout>

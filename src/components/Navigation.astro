@@ -1,0 +1,47 @@
+---
+interface PageLink {
+  title: string;
+  slug: string;
+}
+
+const pageLinks = [
+  {
+    title: "Home",
+    slug: "/"
+  }, {
+    title: "All Posts",
+    slug: "/allposts"
+  }, {
+    title: "Authors",
+    slug: "/author"
+  }
+]
+---
+
+<nav class="navi">
+  {
+    pageLinks.map((pageLink: PageLink) => (
+      <a class="navi__link" href={ pageLink.slug }>{ pageLink.title }</a>
+    ))
+  }
+</nav>
+
+<style lang="scss">
+  @use "../styles/colors" as *;
+
+  .navi {
+    display: flex;
+    align-items: center;
+    gap: 0 1.5em;
+
+    &__link {
+      transition: color 0.1s ease-in-out;
+
+      @media (hover: hover) {
+        &:hover {
+          color: $color-accent;
+        }
+      }
+    }
+  }
+</style>
