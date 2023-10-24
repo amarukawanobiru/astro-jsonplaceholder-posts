@@ -1,0 +1,18 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={ title } description={ description }>
+  <div class="container">
+    <Header />
+    <div class="main-content">
+      <slot />
+    </div>
+    <Footer />
+  </div>
+  <script src="../scripts/setFillHeight.js"></script>
+</BaseLayout>

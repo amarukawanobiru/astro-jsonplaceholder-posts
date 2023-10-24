@@ -1,0 +1,16 @@
+@use "colors" as *;
+@use "reset" as *;
+
+body {
+  background-color: $color-bg;
+  color: $color-text;
+}
+
+.container {
+  width: 1024px;
+  max-width: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}

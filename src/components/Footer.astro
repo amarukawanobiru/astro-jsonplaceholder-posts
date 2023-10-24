@@ -1,0 +1,25 @@
+---
+---
+
+<footer class="footer">
+  <small class="copy">&copy; 2023 Astro JSONPlaceholder Posts by Nobiru Amarukawa</small>
+</footer>
+
+<style lang="scss">
+  @use "../styles/colors" as *;
+
+  .footer {
+    margin-top: 40px;
+    border-top: 1px solid $color-text;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 100%;
+      border-top: 1px solid $color-text;
+      position: absolute;
+      top: 2px;
+      left: 0;
+    }
+  }
+</style>
