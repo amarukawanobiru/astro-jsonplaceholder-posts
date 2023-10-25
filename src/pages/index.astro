@@ -2,14 +2,39 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import Mainvisual from "../components/Mainvisual.astro";
 import AllPosts from "../components/AllPosts.astro";
+import { fetchApi } from "../scripts/api";
+import { endpoint } from "../lib/config";
+import type { Post } from "../lib/config";
 
 const pageStatus = {
   title: "Home",
   description: "I am not good at English, but I tried my best to make it."
 }
+
+const allPosts = await fetchApi(endpoint.posts);
+
+// ********** ビルド時にランダムで表示する投稿10件を決める処理 ********** //
+const totalPostCount: number = allPosts.length;
+const randomNumber = (num: number): number => Math.trunc(Math.random() * num);
+
+const ranmdomPostsNumbers: Set<number> = new Set();
+while (ranmdomPostsNumbers.size <= 10) {
+  const number: number = randomNumber(totalPostCount);
+  ranmdomPostsNumbers.add(number);
+}
+
+const filteredPostsNumbers: Array<number> = [...ranmdomPostsNumbers].sort((a, b) => a - b);
+const filteredPosts = allPosts.filter((post: Post) => filteredPostsNumbers.includes(Number(post.id)));
+// ********** ********** ********** //
 ---
 
 <PageLayout title={ pageStatus.title } description={ pageStatus.description }>
   <Mainvisual />
-  <AllPosts isHomePage={ true } />
+  <section class="allposts section">
+    <div class="inner">
+      <h2 class="section-heading"><span class="section-heading__inner-text">All Posts</span></h2>
+      <AllPosts posts={ filteredPosts } />
+      <a class="view-more" href="/allposts/1">view more { `>>` }</a>
+    </div>
+  </section>
 </PageLayout>

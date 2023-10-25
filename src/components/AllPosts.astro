@@ -1,38 +1,16 @@
 ---
-import { fetchApi } from "../scripts/api";
-import { endpoint } from "../lib/config";
 import type { Post } from "../lib/config";
 
-const allPosts = await fetchApi(endpoint.posts);
-
-const { isHomePage } = Astro.props;
-
-const totalPostCount: number = allPosts.length;
-const randomNumber = (num: number): number => Math.trunc(Math.random() * num);
-
-const ranmdomPostsNumbers: Set<number> = new Set();
-while (ranmdomPostsNumbers.size <= 10) {
-  const number: number = randomNumber(totalPostCount);
-  ranmdomPostsNumbers.add(number);
-}
-
-const filteredPostsNumbers: Array<number> = [...ranmdomPostsNumbers].sort((a, b) => a - b);
-
-const filteredPosts = isHomePage ? allPosts.filter((post: Post) => filteredPostsNumbers.includes(Number(post.id))) : allPosts;
+const { posts } = Astro.props;
 ---
 
-<section class="allposts section">
-  <div class="inner">
-    <h2 class="section-heading"><span class="section-heading__inner-text">All Posts</span></h2>
-    <ul class="all-posts">
-      {
-        filteredPosts.map((post: Post) => (
-          <li class="all-posts__item"><a class="all-posts__link" href={ `/allposts/` }>{ post.title }</a></li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
+<ul class="all-posts">
+  {
+    posts.map((post: Post) => (
+      <li class="all-posts__item"><a class="all-posts__link" href={ `/post/${ post.id }` }>{ post.title }</a></li>
+    ))
+  }
+</ul>
 
 <style lang="scss">
   @use "../styles/colors" as *;
@@ -45,10 +23,14 @@ const filteredPosts = isHomePage ? allPosts.filter((post: Post) => filteredPosts
     }
 
     &__link {
-      transition: color 0.1s ease-in-out;
+      border-bottom: 1px solid $color-text;
+      transition-property: border-color, color;
+      transition-duration: 0.1s;
+      transition-timing-function: ease-in-out;
 
       @media (hover: hover) {
         &:hover {
+          border-color: $color-accent;
           color: $color-accent;
         }
       }

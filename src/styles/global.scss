@@ -26,6 +26,23 @@ body {
 .section {
   margin-top: 8rem;
   font-size: 1.125rem;
+
+  .view-more {
+    display: block;
+    width: fit-content;
+    margin-top: 4rem;
+    border-bottom: 1px solid $color-text;
+    transition-property: border-color, color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: $color-accent;
+        color: $color-accent;
+      }
+    }
+  }
 }
 
 .section-heading {
