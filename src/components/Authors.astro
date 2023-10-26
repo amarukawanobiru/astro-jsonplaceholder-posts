@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import authorIcon_01 from "../assets/author-icon_01.png";
+import authorIcon_02 from "../assets/author-icon_02.png";
+import authorIcon_03 from "../assets/author-icon_03.png";
+import authorIcon_04 from "../assets/author-icon_04.png";
+import authorIcon_05 from "../assets/author-icon_05.png";
+import authorIcon_06 from "../assets/author-icon_06.png";
+import authorIcon_07 from "../assets/author-icon_07.png";
+import authorIcon_08 from "../assets/author-icon_08.png";
+import authorIcon_09 from "../assets/author-icon_09.png";
+import authorIcon_10 from "../assets/author-icon_10.png";
+import { fetchApi } from "../scripts/api";
+import { endpoint } from "../lib/config";
+import type { Author } from "../lib/config";
+
+const authorsData = await fetchApi(endpoint.authors);
+
+const authorIcons = [
+  authorIcon_01,
+  authorIcon_02,
+  authorIcon_03,
+  authorIcon_04,
+  authorIcon_05,
+  authorIcon_06,
+  authorIcon_07,
+  authorIcon_08,
+  authorIcon_09,
+  authorIcon_10,
+];
+---
+
+<ul class="authors">
+  {
+    authorsData.map((author: Author, index: number) => (
+      <li class="author">
+        <a class="author__link" href="#!">
+          <Image class="author__image" src={ authorIcons[index] } alt="Author icon" />
+          <h2 class="author__user-name">{ author.username }<span class="name">by: { author.name }</span></h2>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  @use "../styles/colors" as *;
+
+  .authors {
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .author {
+    width: calc((100% - 2rem) / 3);
+    padding: 1rem;
+
+    &__link {
+      display: block;
+      width: fit-content;
+
+      @media (hover: hover) {
+        &:hover {
+          .author__image {
+            opacity: 0.6;
+          }
+
+          .author__user-name {
+            color: $color-accent;;
+          }
+        }
+      }
+    }
+
+    &__image {
+      width: 128px;
+      transition: opacity 0.1s ease-in-out;
+    }
+
+    &__user-name {
+      margin-top: .5rem;
+      font-size: clamp(1.25rem, 1.161rem + 0.45vw, 1.375rem);
+      font-weight: 700;
+      transition: color 0.1s ease-in-out;
+      
+      .name {
+        display: block;
+        font-size: clamp(0.75rem, 0.661rem + 0.45vw, 0.875rem);
+        font-weight: 400;
+        font-style: italic;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      width: calc((100% - 1rem) / 2);
+    }
+
+    @media screen and (max-width: 428px) {
+      width: 100%;
+    }
+  }
+</style>
