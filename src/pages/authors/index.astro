@@ -1,0 +1,19 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import Authors from "../../components/Authors.astro";
+
+const pageStatus = {
+  title: "Authors",
+  description: "I am not good at English, but I tried my best to make it."
+}
+---
+
+<PageLayout title={ pageStatus.title } description={ pageStatus.description }>
+  <section class="authors section mt8rem">
+    <div class="inner">
+      <h2 class="section-heading"><span class="section-heading__inner-text">Authors</span></h2>
+        <Authors />
+      </ul>
+    </div>
+  </section>
+</PageLayout>

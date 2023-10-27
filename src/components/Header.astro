@@ -17,6 +17,11 @@ import localHeaderLogo from "../assets/logo.svg";
       <span class="burger__bar"></span>
       <span class="burger__bar"></span>
     </button>
+    <div class="drawer-menu">
+      <div class="drawer-menu__inner">
+        <Navigation />
+      </div>
+    </div>
   </div>
 </header>
 
@@ -61,6 +66,50 @@ import localHeaderLogo from "../assets/logo.svg";
         width: 100%;
         border-bottom: 4px solid $color-text;
         display: block;
+        transition-property: transform, opacity;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+      }
+
+      // JavaScriptでの処理
+      &.js-active {
+        .burger__bar:nth-of-type(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .burger__bar:nth-of-type(2) {
+          opacity: 0;
+        }
+        .burger__bar:nth-of-type(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+      }
+    }
+    
+    .drawer-menu {
+      overflow: hidden;
+      position: absolute;
+      top: calc(100% + 1px);
+      right: 0;
+      visibility: hidden;
+      transition: visibility .2s ease-in-out;
+
+      &__inner {
+        transform-origin: right top;
+        transform: rotate(-90deg);
+        opacity: 0;
+        transition-property: transform, opacity;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+      }
+
+      // ***** JavaScriptでの処理
+      &.js-active {
+        visibility: visible;
+
+        .drawer-menu__inner {
+          transform: rotate(0);
+          opacity: 1;
+        }
       }
     }
 
@@ -79,3 +128,14 @@ import localHeaderLogo from "../assets/logo.svg";
     }
   }
 </style>
+
+<script>
+  const $burger: HTMLElement | null = document.querySelector(".burger");
+  const $drawer: HTMLElement | null = document.querySelector(".drawer-menu");
+
+
+  $burger?.addEventListener("click", () => {
+    $burger?.classList.toggle("js-active");
+    $drawer?.classList.toggle("js-active");
+  })
+</script>

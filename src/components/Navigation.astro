@@ -13,9 +13,9 @@ const pageLinks = [
     slug: "/allposts/1"
   }, {
     title: "Authors",
-    slug: "/author"
+    slug: "/authors"
   }
-]
+];
 ---
 
 <nav class="navi">
@@ -41,6 +41,20 @@ const pageLinks = [
         &:hover {
           color: $color-accent;
         }
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 2rem 1.5rem 2.5rem 2.5rem;
+      background-color: rgba($color: $color-text, $alpha: 1);
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2rem 0;
+
+      .navi__link {
+        color: $color-bg;
+        font-size: 1.25rem;
+        border-bottom: 1px solid $color-bg;
       }
     }
   }

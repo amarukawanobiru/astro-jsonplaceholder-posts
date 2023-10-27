@@ -23,6 +23,12 @@ const { posts } = Astro.props;
     }
 
     &__link {
+      width: fit-content;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
       border-bottom: 1px solid $color-text;
       transition-property: border-color, color;
       transition-duration: 0.1s;
