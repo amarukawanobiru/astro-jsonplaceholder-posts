@@ -9,7 +9,14 @@ import localHeaderLogo from "../assets/logo.svg";
     <a class="header__logo" href="/">
       <Image class="header__logo__image" src={ localHeaderLogo } alt="JSONPlaceholder Posts" />
     </a>
-    <Navigation />
+    <div class="global-navigation">
+      <Navigation />
+    </div>
+    <button class="burger" aria-label="Burger toggle button">
+      <span class="burger__bar"></span>
+      <span class="burger__bar"></span>
+      <span class="burger__bar"></span>
+    </button>
   </div>
 </header>
 
@@ -40,6 +47,35 @@ import localHeaderLogo from "../assets/logo.svg";
     &__logo {
       display: block;
       width: 240px;
+    }
+
+    .burger {
+      width: 32px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px 0;
+
+      &__bar {
+        width: 100%;
+        border-bottom: 4px solid $color-text;
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .header__logo {
+        width: calc(88% - 32px);
+      }
+
+      .global-navigation {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
     }
   }
 </style>

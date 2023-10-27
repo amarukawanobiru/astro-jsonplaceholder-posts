@@ -16,6 +16,7 @@ body {
 .container {
   width: 1024px;
   max-width: 100%;
+  min-height: calc(var(--view-height, 1vh) * 100);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-left: auto;
@@ -25,6 +26,10 @@ body {
 .inner {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 .section {
@@ -74,5 +79,13 @@ body {
     width: 0.25em;
     align-self: stretch;
     border-left: 0.25em solid $color-text;
+  }
+
+  @media screen and (max-width: 428px) {
+    &__inner-text {
+      width: 100%;
+      padding: 0;
+      text-align: center;
+    }
   }
 }

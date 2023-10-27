@@ -20,3 +20,14 @@ img {
   height: auto;
   display: block;
 }
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
